@@ -1,0 +1,151 @@
+:root{
+  --bg:#f5f7fb;
+  --panel:#ffffff;
+  --text:#0f172a;
+  --muted:#475569;
+  --brand:#0ea5e9;
+  --ring:#dbeafe;
+  --border:#e2e8f0;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial;
+  background: #e0f7ff;
+  color: var(--text);
+}
+.container{max-width:1000px;margin:0 auto;padding:0 20px}
+
+/* Header */
+.header-bar{
+  background:#fff;
+  border-bottom:1px solid #ddd;
+  position:sticky;top:0;z-index:1000;
+}
+.header-inner{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 0;
+}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-name{font-weight:800;font-size:18px}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;padding:4px 8px;border-radius:999px;
+  color:var(--brand);
+  background:#eff6ff;border:1px solid var(--ring);
+}
+
+/* Nav */
+.nav-links{display:flex;align-items:center;gap:10px}
+.nav-links a{
+  text-decoration:none;color:#0f172a;font-weight:600;
+  padding:6px 10px;border-radius:8px;
+  border:1px solid transparent;
+  transition:.2s;
+}
+.nav-links a:hover{
+  background:#f1f5f9;border-color:var(--border);
+}
+.nav-links a.active {
+  background:#e0f2fe;
+  border-color:var(--brand);
+  color:var(--brand);
+}
+
+
+/* Content */
+.content-box{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:28px;
+  margin-top:22px;
+  box-shadow:0 6px 20px rgba(2,8,23,.06);
+  animation:fade .35s ease;
+}
+.content-box p{
+  background:#f8fafc;
+  border-left:3px solid var(--brand);
+  padding:8px 12px;
+  border-radius:6px;
+  margin-bottom:10px;
+  color:var(--muted);
+}
+@keyframes fade{from{opacity:.0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h1{margin:0 0 10px;font-size:34px;line-height:1.2}
+h2{margin:0 0 12px;font-size:24px}
+p{color:var(--muted);line-height:1.7;margin:0 0 10px}
+.highlight{color:var(--brand)}
+
+/* Hero */
+.hero .lead{margin:12px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:center}
+.avatar-wrapper{display:flex;justify-content:center}
+.avatar{
+  width:230px;height:auto;border-radius:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+  transition:transform .25s ease;
+  border:2px solid #e2e8f0;padding:4px;
+}
+.avatar:hover{transform:scale(1.03);border-color:var(--brand)}
+
+/* Grid & cards */
+.grid-3{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{
+  background:var(--panel);border:1px solid var(--border);border-radius:12px;
+  padding:16px;box-shadow:0 4px 14px rgba(2,8,23,.05);
+  transition:transform .2s, box-shadow .2s, border-color .2s;
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 20px rgba(2,8,23,.10);border-color:#cbd5e1}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{
+  padding:6px 10px;border-radius:999px;font-size:12px;
+  background:#f1f5f9;border:1px solid var(--border);
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 14px;border-radius:10px;
+  border:1px solid var(--border);
+  background:#f8fafc;color:#0f172a;text-decoration:none;font-weight:600;
+  transition:.2s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(2,8,23,.08)}
+
+/* Tabs */
+.tab{display:none}
+#home{display:block}
+:target{display:block}
+:target ~ #home{display:none}
+
+/* Responsive */
+@media (max-width: 860px){
+  .hero-grid{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .nav-links{gap:6px}
+  .nav-links a{padding:6px 8px}
+}
+/* nav link active with :target */
+:target ~ .header-bar .nav-links a[href="#home"],
+:target ~ .header-bar .nav-links a[href="#about"],
+:target ~ .header-bar .nav-links a[href="#projects"],
+:target ~ .header-bar .nav-links a[href="#skills"],
+:target ~ .header-bar .nav-links a[href="#contact"] {
+  background: transparent;
+  color: var(--text);
+  border-color: transparent;
+}
+
+/* নির্দিষ্ট target অনুযায়ী active highlight */
+#home:target ~ .header-bar .nav-links a[href="#home"],
+#about:target ~ .header-bar .nav-links a[href="#about"],
+#projects:target ~ .header-bar .nav-links a[href="#projects"],
+#skills:target ~ .header-bar .nav-links a[href="#skills"],
+#contact:target ~ .header-bar .nav-links a[href="#contact"] {
+  background:#e0f2fe;
+  border-color:var(--brand);
+  color:var(--brand);
+}
